@@ -41,7 +41,7 @@ class Raindrop {
 
   draw() {
     ctx.beginPath();
-    ctx.strokeStyle = `rgba(135, 206, 250, ${this.opacity})`; // 하늘색
+    ctx.strokeStyle = `rgba(135, 206, 250, ${this.opacity})`;
     ctx.lineWidth = 1;
     ctx.moveTo(this.x, this.y);
     ctx.lineTo(this.x, this.y + this.length);
@@ -54,18 +54,11 @@ for (let i = 0; i < 300; i++) {
   raindrops.push(new Raindrop());
 }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  raindrops.forEach(drop => {
-    drop.update();
-    drop.draw();
-  });
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-window.addEventListener('resize', () => {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-});
+// 💧 클릭 시 퍼지는 물방울 클래스
+class Ripple {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    this.radius = 0;
+    this.opacity = 0.5;
+  }
